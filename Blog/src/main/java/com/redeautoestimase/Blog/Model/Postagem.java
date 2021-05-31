@@ -13,6 +13,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -23,7 +24,7 @@ public class Postagem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String foto;
+	private String fotoPostagem;
 
 	@NotNull
 	@Size(min = 3, max = 50)
@@ -33,16 +34,29 @@ public class Postagem {
 	@Size(min = 3)
 	private String texto;
 	
+	@NotNull
+	@Size(min = 3)
+	private String nomeAutor;
+	
+	@NotNull
+	@Size(min = 3)
+	private String sobreAutor;
+	
+	@NotNull
+	@Size(min = 3)
+	private String fotoAutor;
+	 
+		
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date =new java.sql.Date(System.currentTimeMillis());
-	
-	@ManyToOne
-	@JsonIgnoreProperties("postagem")
-	private Tema tema;
-	
+		
 	@ManyToOne
 	@JsonIgnoreProperties("postegem")
 	private Usuario usuario;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem") 
+	private Categoria categoria;
 
 	public long getId() {
 		return id;
@@ -50,6 +64,14 @@ public class Postagem {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getFotoPostagem() {
+		return fotoPostagem;
+	}
+
+	public void setFotoPostagem(String fotoPostagem) {
+		this.fotoPostagem = fotoPostagem;
 	}
 
 	public String getTitulo() {
@@ -68,20 +90,36 @@ public class Postagem {
 		this.texto = texto;
 	}
 
+	public String getNomeAutor() {
+		return nomeAutor;
+	}
+
+	public void setNomeAutor(String nomeAutor) {
+		this.nomeAutor = nomeAutor;
+	}
+
+	public String getSobreAutor() {
+		return sobreAutor;
+	}
+
+	public void setSobreAutor(String sobreAutor) {
+		this.sobreAutor = sobreAutor;
+	}
+
+	public String getFotoAutor() {
+		return fotoAutor;
+	}
+
+	public void setFotoAutor(String fotoAutor) {
+		this.fotoAutor = fotoAutor;
+	}
+
 	public Date getDate() {
 		return date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public Tema getTema() {
-		return tema;
-	}
-
-	public void setTema(Tema tema) {
-		this.tema = tema;
 	}
 
 	public Usuario getUsuario() {
@@ -91,15 +129,15 @@ public class Postagem {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
-	public String getFoto() {
-		return foto;
+
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	
+
 	
 }
