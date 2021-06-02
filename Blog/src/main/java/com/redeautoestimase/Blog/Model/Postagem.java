@@ -1,6 +1,6 @@
 package com.redeautoestimase.Blog.Model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,12 +12,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Postagem")
+@Table(name = "postagem")
 public class Postagem {
 	
 	@Id
@@ -46,18 +44,18 @@ public class Postagem {
 	@Size(min = 3)
 	private String fotoAutor;
 	 
-		
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date =new java.sql.Date(System.currentTimeMillis());
-		
+	
+	private Date date =  new java.sql.Date(System.currentTimeMillis());
+			
+	@ManyToOne
+	@JsonIgnoreProperties("postagem") 
+	private Categoria categoria;
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postegem")
 	private Usuario usuario;
 	
-	@ManyToOne
-	@JsonIgnoreProperties("postagem") 
-	private Categoria categoria;
-
 	public long getId() {
 		return id;
 	}
