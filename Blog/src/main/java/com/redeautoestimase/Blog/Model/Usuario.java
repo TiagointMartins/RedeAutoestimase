@@ -1,6 +1,5 @@
 package com.redeautoestimase.Blog.Model;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +40,10 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 	
-		
+	@OneToMany(mappedBy = "comentarios", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("comentarios")
+	private List<Comentarios> comentarios;	
+	
 	//Getters and Setters
 
 	public long getId() {
