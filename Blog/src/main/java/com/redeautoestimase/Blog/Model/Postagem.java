@@ -50,7 +50,7 @@ public class Postagem {
 	
 	private Date date =  new java.sql.Date(System.currentTimeMillis());
 	
-	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "postagem", cascade = CascadeType.PERSIST)
 	@JsonIgnoreProperties("postagem")
 	private List<Comentarios> comentarios;
 			
